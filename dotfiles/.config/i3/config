@@ -31,7 +31,7 @@ exec_always --no-startup-id feh --bg-scale --zoom fill ~/.config/backgrounds/bac
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Monitor Setup
-exec --no-startup-id xrandr --output HDMI-A-0 --mode 2560x1440 --rate 143.99 --left-of DisplayPort-2
+exec_always --no-startup-id xrandr --output HDMI-A-0 --mode 2560x1440 --rate 143.99 --left-of DisplayPort-2
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -58,13 +58,17 @@ tiling_drag modifier titlebar
 bindsym $mod+Return exec kitty
 
 # kill focused window
-bindsym $mod++q kill
+bindsym $mod+q kill
 
 # start rofi alt+tab mode
 bindsym Mod1+Tab exec --no-startup-id rofi -modi combi -combi-modi window -show combi
 
-# start ulauncher on mod + space
-bindsym $mod+space exec --no-startup-id ulauncher
+# start rofi drun on mod + space
+bindsym $mod+space exec --no-startup-id rofi -show-icons -sort -show drun 
+
+# Screenshot Script to copy to clipboard
+bindsym Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png &
+
 
 # start dmenu (a program launcher)
 #bindsym $mod+space exec --no-startup-id dmenu_run
@@ -99,18 +103,18 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+#bindsym $mod+h split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+#bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+#bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+#bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 #bindsym $mod+Shift+t floating toggle
@@ -119,7 +123,7 @@ bindsym $mod+e layout toggle split
 #bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -209,3 +213,6 @@ for_window[class="steam"] floating enable
 
 # Remove all top bars
 for_window [class="^.*"] border pixel 0
+
+# Floating Kcal
+for_window[class="kcalc"] floating enable
