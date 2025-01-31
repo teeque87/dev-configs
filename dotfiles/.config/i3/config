@@ -31,7 +31,15 @@ exec_always --no-startup-id feh --bg-scale --zoom fill ~/.config/backgrounds/bac
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Monitor Setup
-exec_always --no-startup-id xrandr --output HDMI-A-0 --mode 2560x1440 --rate 143.99 --left-of DisplayPort-2
+exec --no-startup-id ~/.config/i3/scripts/dualmonitor.sh
+
+# Bindings for Profile Switch
+bindsym $mod+F1 exec --no-startup-id ~/.config/i3/scripts/dualmonitor.sh
+bindsym $mod+F2 exec --no-startup-id ~/.config/i3/scripts/singlemonitor.sh
+
+# Old settings for Backup
+#exec_always --no-startup-id xrandr --output HDMI-A-0 --primary --mode 2560x1440 --rate 143.99 --left-of DisplayPort-2
+#exec_always --no-startup-id xrandr --output HDMI-A-0 --primary --mode 2560x1440 --rate 143.99
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -214,5 +222,5 @@ for_window[class="steam"] floating enable
 # Remove all top bars
 for_window [class="^.*"] border pixel 0
 
-# Floating Kcal
-for_window[class="kcalc"] floating enable
+# Floating Kcal and set default size
+for_window[class="kcalc"] floating enable resize set 700 500
